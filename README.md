@@ -1,7 +1,8 @@
 # Vehicle Counting Using YOLOV9 + DeepSort
 
 ## Method
-- Using YOLOV9 for Object Detection 
+- Using YOLOV9 for Object Detection
+  
     Implementation of paper - [YOLOv9: Learning What You Want to Learn Using Programmable Gradient Information](https://arxiv.org/abs/2402.13616)
     Source Code: - [https://github.com/WongKinYiu/yolov9](https://github.com/WongKinYiu/yolov9)
 
@@ -10,7 +11,9 @@
         <img src="./figure/performance.png" width="79%"/>
     </a>
 </div>
+
 - Using deep-sort-realtime to track vehicles by assigning a unique ID to each vehicle in every frame it appears in.
+
 <div align="center">
     <a href="./">
         <img src="./figure/deepsort.webp" width="79%"/>
@@ -47,6 +50,6 @@ python object_tracking.py
 ```
 
 You will get the results:
-![Vehicle Counting](./output/processed_video.mp4)
+![Vehicle Counting](./output/processed_video.gif)
 
 
