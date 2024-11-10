@@ -24,6 +24,13 @@ cap = cv2.VideoCapture(video_path)
 fps = cap.get(cv2.CAP_PROP_FPS)  
 frame_delay = int(1000 / fps)
 
+# Path to save the output video
+output_video_path = 'output/processed_video.mp4'
+
+# Initialize VideoWriter with codec, frame rate, and frame size
+fourcc = cv2.VideoWriter_fourcc(*'mp4v')  # codec for .mp4 files
+out = cv2.VideoWriter(output_video_path, fourcc, fps, (int(cap.get(cv2.CAP_PROP_FRAME_WIDTH)), int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))))
+
 # Define line positions for counting
 line_y_up = 420  # Y-coordinate of the upward counting line
 line_y_down = 600  # Y-coordinate of the downward counting line
@@ -94,6 +101,9 @@ while cap.isOpened():
     cv2.putText(frame, 'Car Upwards: ' + str(num_car_upwards), (10, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
     cv2.putText(frame, 'Car Downwards: ' + str(num_car_downwards), (10, 100), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
 
+    # Write the processed frame to the output video
+    out.write(frame)
+    
     # Show frame
     cv2.imshow('Tracking', frame)
 
@@ -101,5 +111,7 @@ while cap.isOpened():
     if cv2.waitKey(frame_delay) & 0xFF == ord('q'):
         break
 
+# save video
 cap.release()
+out.release()
 cv2.destroyAllWindows()
